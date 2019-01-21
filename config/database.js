@@ -11,6 +11,10 @@ if(!db) {
     console.log('Banco ' + dbName + ' pronto para uso')
 }
 */
+  db.adm = new Datastore({
+      filename: "data/adm.db",
+      autoload: true
+  });
   db.zonas = new Datastore({
       filename: "data/zones.db",
       autoload: true
