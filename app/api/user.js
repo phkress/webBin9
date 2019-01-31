@@ -34,7 +34,7 @@ api.adiciona = function(req, res) {
         if(err) return console.log(err);
         if(!newUser) return res.sendStatus(500).end();
         console.log('Adicionado com sucesso: ' + newUser._id);
-        res.json(newHost._id);
+        res.json(newUser._id);
     });
 };
 module.exports = api;
