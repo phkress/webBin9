@@ -28,7 +28,7 @@ let dnsm = {};
         dnsm.escreveDados(item)
         .then(()=>{
           console.log("Função que reseta o bind");
-          shell.exec('service --status-all').stdout;
+          shell.exec('service bind9 restart').stdout;
         });
     });
   },
