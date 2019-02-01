@@ -1,4 +1,5 @@
 const db = require('../../config/database');
+const sha256 = require('js-sha256').sha256;
 const api = {};
 
 api.lista = function(req, res) {
@@ -19,6 +20,7 @@ api.remove = (req,res) => {
     });
 };
 api.atualiza = (req,res) => {
+  req.body.senha = sha256(req.body.senha);
   db.adm.update({ _id: req.params.userId }, req.body, function(err, userUpdate) {
     if (err) return console.log(err);
     if(userUpdate) {
@@ -30,6 +32,7 @@ api.atualiza = (req,res) => {
   });
 };
 api.adiciona = function(req, res) {
+  req.body.senha = sha256(req.body.senha);
     db.adm.insert(req.body, function(err, newUser) {
         if(err) return console.log(err);
         if(!newUser) return res.sendStatus(500).end();

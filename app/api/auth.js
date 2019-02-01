@@ -1,4 +1,5 @@
 const db = require('../../config/database');
+const sha256 = require('js-sha256').sha256;
 let jwt  = require('jsonwebtoken');
 
 module.exports = function(app) {
@@ -13,6 +14,7 @@ module.exports = function(app) {
      };
 
      api.autentica = function(req, res) {
+       req.body.senha = sha256(req.body.senha);
        db.adm.findOne({login: req.body.login, senha: req.body.senha},(err, usuario) => {
          if (err) return console.log(err);
          if (usuario) {
